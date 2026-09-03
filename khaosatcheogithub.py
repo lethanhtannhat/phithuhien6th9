@@ -83,9 +83,26 @@ def tn(ques1,stt,number_answers):
     radio_buttons = []
     
     for i in range(1, number_answers+1):
-        my_string.append(f'/html/body/div[2]/div/div/main/section/div/div/div/section[{stt}]/div/div/div/div/div[2]/div/div/div[{i}]/div/div/label/span[2]/span/span')
-                        #/html/body/div[2]/div/div/main/section/div/div/div/section[1]/div/div/div/div/div[2]/div/div/div[3]/div/div/label/input
-                        #/html/body/div[2]/div/div/main/section/div/div/div/section[2]/div/div/div/div/div[2]/div/div/div[5]/div/div/label/span[2]/span/span
+        my_string.append(f'/html/body/div[2]/div/div/main/div[2]/section/div/div/div/section/div/div/div/div/div[2]/div/div/div[{i}]/div/div/label/span[2]/span/span')
+                        #/html/body/div[2]/div/div/main/div[2]/section/div/div/div/section[1]/div/div/div/div/div[2]/div/div/div[2]/div/div/label/span[2]/span/span
+                        #/html/body/div[2]/div/div/main/div[2]/section/div/div/div/section/div/div/div/div/div[2]/div/div/div[1]/div/div/label/input
+        radio_buttons.append(WebDriverWait(driver, 10).until(
+            EC.visibility_of_all_elements_located((By.XPATH, my_string[i-1]))
+        ))
+        
+        for radio in radio_buttons[i-1]:
+            if radio.get_attribute("data-value") == ques1 or str(vitri) == ques1:
+                driver.execute_script("arguments[0].click();", radio)
+        vitri += 1
+def tn1(ques1,stt,number_answers):
+    vitri = 1
+    my_string = []
+    radio_buttons = []
+    
+    for i in range(1, number_answers+1):
+        my_string.append(f'/html/body/div[2]/div/div/main/div[2]/section/div/div/div/section[{stt}]/div/div/div/div/div[2]/div/div/div[{i}]/div/div/label/span[2]/span/span')
+                        #/html/body/div[2]/div/div/main/div[2]/section/div/div/div/section[1]/div/div/div/div/div[2]/div/div/div[2]/div/div/label/span[2]/span/span
+                        #/html/body/div[2]/div/div/main/div[2]/section/div/div/div/section[2]/div/div/div/div/div[2]/div/div/div[3]/div/div/label/span[2]/span/span
         radio_buttons.append(WebDriverWait(driver, 10).until(
             EC.visibility_of_all_elements_located((By.XPATH, my_string[i-1]))
         ))
@@ -218,7 +235,8 @@ def fill_form(name,stt):
 
 def tracnghiem(ques1, stt, number_answers):
     tn(ques1,stt,number_answers)
-
+def tracnghiem1(ques1, stt, number_answers):
+    tn1(ques1,stt,number_answers)
 def menuthaxuong(ques1, stt, number_answers):
     mntx(ques1,stt,number_answers)
 
@@ -344,45 +362,59 @@ except Exception as e:
     exit(1)
 
 time.sleep(1)
-driver.get('https://uwe.eu.qualtrics.com/jfe/form/SV_0wUEj0Bgh0LE72u')
-time.sleep(1)
-tn1(row[0],1,1)
-
+driver.get('https://uwe.eu.qualtrics.com/jfe/form/SV_6VcYOmN6S7bEtcW')
+time.sleep(0.5)
+tracnghiem(row[0],1,2)
 next_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="next-button"]')))
 driver.execute_script("arguments[0].click();", next_button)
+time.sleep(0.5)
+tracnghiem(row[1],1,2)
+submit_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="next-button"]')))
+driver.execute_script("arguments[0].click();", submit_button)
+time.sleep(0.5)
+tracnghiem1(row[2],1,4)
+tracnghiem1(row[3],2,9)
+tracnghiem1(row[4],3,17)
+tracnghiem1(row[5],4,5)
+tracnghiem1(row[6],5,8)
+tracnghiem1(row[7],6,6)
+tracnghiem1(row[8],7,4)
+submit_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="next-button"]')))
+driver.execute_script("arguments[0].click();", submit_button)
+time.sleep(0.5)
+tracnghiem1(row[9],2,5)
+tracnghiem1(row[10],3,5)
+tracnghiem1(row[11],4,5)
+tracnghiem1(row[12],5,5)
+tracnghiem1(row[13],6,5)
+submit_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="next-button"]')))
+driver.execute_script("arguments[0].click();", submit_button)
+time.sleep(0.5)
+tracnghiem1(row[14],2,5)
+tracnghiem1(row[15],3,5)
+tracnghiem1(row[16],4,5)
+tracnghiem1(row[17],5,5)
+tracnghiem1(row[18],6,5)
+submit_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="next-button"]')))
+driver.execute_script("arguments[0].click();", submit_button)
+time.sleep(0.5)
+tracnghiem1(row[19],2,5)
+tracnghiem1(row[20],3,5)
+tracnghiem1(row[21],4,5)
+tracnghiem1(row[22],5,5)
+tracnghiem1(row[23],6,5)
+submit_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="next-button"]')))
+driver.execute_script("arguments[0].click();", submit_button)
+time.sleep(0.5)
+tracnghiem1(row[24],2,5)
+tracnghiem1(row[25],3,5)
+tracnghiem1(row[26],4,5)
+tracnghiem1(row[27],5,5)
+tracnghiem1(row[28],6,5)
+submit_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="next-button"]')))
+driver.execute_script("arguments[0].click();", submit_button)
 time.sleep(1)
-tracnghiem(row[1],1,3)
-tracnghiem(row[2],2,5)
-tracnghiem(row[3],3,3)
-tracnghiem(row[4],4,4)
-tracnghiem(row[5],5,5)
-next_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="next-button"]')))
-driver.execute_script("arguments[0].click();", next_button)
-time.sleep(1)
-next_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="next-button"]')))
-driver.execute_script("arguments[0].click();", next_button)
-time.sleep(1)
-luoitracnghiem(row[6],row[7],row[8],row[9],stt=1,colums=5)
-luoitracnghiem(row[10],row[11],row[12],stt=2,colums=5)
-luoitracnghiem(row[13],row[14],row[15],stt=3,colums=5)
-next_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="next-button"]')))
-driver.execute_script("arguments[0].click();", next_button)
-time.sleep(1)
-luoitracnghiem(row[16],row[17],row[18],stt=1,colums=5)
-luoitracnghiem(row[19],row[20],row[21],stt=2,colums=5)
-next_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="next-button"]')))
-driver.execute_script("arguments[0].click();", next_button)
-time.sleep(1)
-luoitracnghiem(row[22],row[23],row[24],stt=1,colums=5)
-luoitracnghiem(row[25],row[26],row[27],stt=2,colums=5)
-next_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="next-button"]')))
-driver.execute_script("arguments[0].click();", next_button)
-time.sleep(1)
-luoitracnghiem2(row[28],row[29],row[30],stt="",colums=5)
-next_button = WebDriverWait(driver, 10).until(EC.element_to_be_clickable((By.XPATH, '//*[@id="next-button"]')))
-driver.execute_script("arguments[0].click();", next_button)
-
-time.sleep(0.6)
+driver.delete_all_cookies()
 time.sleep(1)
 
 # Update index IMMEDIATELY after submission attempt
